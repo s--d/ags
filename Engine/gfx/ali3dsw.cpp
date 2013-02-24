@@ -244,6 +244,7 @@ bool ALSoftwareGraphicsDriver::IsModeSupported(int driver, int width, int height
     // between loads of unsupported resolutions
     for (int i = 0; i < _gfxModeList->num_modes; i++)
     {
+      
       if ((_gfxModeList->mode[i].width == width) &&
         (_gfxModeList->mode[i].height == height) &&
         (_gfxModeList->mode[i].bpp == colDepth))
