@@ -2,6 +2,7 @@
 *.ncb
 *.suo
 *.vcproj.*.user
+.*.swp
 Engine/acwin___Win32_DebugWorking
 Editor/AGS.Controls/bin
 Editor/AGS.Controls/obj
@@ -31,3 +32,6 @@ Solutions/Common.Lib/Release
 *.csproj.user
 *.idc
 Engine/version.aps
+cscope.files
+cscope.out
+tags
