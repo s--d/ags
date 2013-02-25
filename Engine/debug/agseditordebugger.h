@@ -29,6 +29,7 @@
 #define DBG_DEBUGMODE 0x100
 #define DBG_REGONLY   0x200
 #define DBG_NOVIDEO   0x400
+#define DBG_VERBOSE   0x800
 
 struct IAGSEditorDebugger
 {

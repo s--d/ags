@@ -22,12 +22,16 @@
 #include "gfx/bitmap.h"
 #include "gfx/ddb.h"
 #include "gfx/graphicsdriver.h"
+#include "debug/debug_log.h"
+#include "debug/agseditordebugger.h"
+#include "debug/out.h"
 
 #include <stdio.h>
 
 using AGS::Common::Bitmap;
 namespace BitmapHelper = AGS::Common::BitmapHelper;
 using namespace AGS; // FIXME later
+namespace Out = AGS::Common::Out;
 
 #if defined(PSP_VERSION)
 // PSP: Includes for sceKernelDelayThread.
@@ -240,11 +244,21 @@ bool ALSoftwareGraphicsDriver::IsModeSupported(int driver, int width, int height
   }
   if (_gfxModeList != NULL)
   {
+    if (debug_flags & DBG_VERBOSE)
+    {
+        Out::FPrint("Allegro detected modes: %d", _gfxModeList->num_modes);
+        for (int i = 0; i < _gfxModeList->num_modes; i++)
+        {
+          Out::FPrint("Detected mode #%d: %dx%d @%dbpp", i,
+                  _gfxModeList->mode[i].width,
+                  _gfxModeList->mode[i].height,
+                  _gfxModeList->mode[i].bpp);
+        }
+    }
     // if a list is available, check if the mode exists. This prevents the screen flicking
     // between loads of unsupported resolutions
     for (int i = 0; i < _gfxModeList->num_modes; i++)
     {
-      
       if ((_gfxModeList->mode[i].width == width) &&
         (_gfxModeList->mode[i].height == height) &&
         (_gfxModeList->mode[i].bpp == colDepth))
@@ -300,6 +314,10 @@ int ALSoftwareGraphicsDriver::GetAllegroGfxDriverID(bool windowed)
   if (windowed)
     return GFX_DIRECTX_WIN;
   return GFX_DIRECTX;
+#elif defined (LINUX_VERSION)
+  if (windowed)
+    return GFX_XWINDOWS;
+  return GFX_XWINDOWS_FULLSCREEN;
 #else
   if (windowed)
     return GFX_AUTODETECT_WINDOWED;

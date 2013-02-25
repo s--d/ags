@@ -240,6 +240,7 @@ int main_process_cmdline(int argc,char*argv[])
         else if (stricmp(argv[ee],"-nomusic")==0) debug_flags|=DBG_NOMUSIC;
         else if (stricmp(argv[ee],"-noscript")==0) debug_flags|=DBG_NOSCRIPT;
         else if (stricmp(argv[ee],"-novideo")==0) debug_flags|=DBG_NOVIDEO;
+        else if (stricmp(argv[ee],"-verbose")==0) debug_flags|=DBG_VERBOSE;
         else if (stricmp(argv[ee],"-noexceptionhandler")==0) usetup.disable_exception_handling = 1;
         else if (stricmp(argv[ee],"-dbgscript")==0) debug_flags|=DBG_DBGSCRIPT;
         else if (stricmp(argv[ee],"-registergame") == 0)
